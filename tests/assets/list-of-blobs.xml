@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EnumerationResults ContainerName="https://cfdisat.blob.core.windows.net/lco">
+  <Prefix>l_RFC_2018_02_11</Prefix>
+  <Blobs>
+    <Blob>
+      <Name>l_RFC_2018_02_11_1.txt.gz</Name>
+      <Url>https://cfdisat.blob.core.windows.net/lco/l_RFC_2018_02_11_1.txt.gz</Url>
+      <Properties>
+        <Last-Modified>Mon, 12 Feb 2018 21:35:12 GMT</Last-Modified>
+        <Etag>0x8D572607F80ED23</Etag>
+        <Content-Length>78490934</Content-Length>
+        <Content-Type>application/octet-stream</Content-Type>
+        <Content-Encoding/>
+        <Content-Language/>
+        <Content-MD5>0I4kcFesuNNNvHEm8v2G+Q==</Content-MD5>
+        <Cache-Control/>
+        <BlobType>BlockBlob</BlobType>
+        <LeaseStatus>unlocked</LeaseStatus>
+      </Properties>
+    </Blob>
+    <Blob>
+      <Name>l_RFC_2018_02_11_2.txt.gz</Name>
+      <Url>https://cfdisat.blob.core.windows.net/lco/l_RFC_2018_02_11_2.txt.gz</Url>
+      <Properties>
+        <Last-Modified>Mon, 12 Feb 2018 21:35:12 GMT</Last-Modified>
+        <Etag>0x8D572607F811441</Etag>
+        <Content-Length>79260516</Content-Length>
+        <Content-Type>application/octet-stream</Content-Type>
+        <Content-Encoding/>
+        <Content-Language/>
+        <Content-MD5>qgaat6HjXPhLMgcQeSYL/A==</Content-MD5>
+        <Cache-Control/>
+        <BlobType>BlockBlob</BlobType>
+        <LeaseStatus>unlocked</LeaseStatus>
+      </Properties>
+    </Blob>
+    <Blob>
+      <Name>l_RFC_2018_02_11_3.txt.gz</Name>
+      <Url>https://cfdisat.blob.core.windows.net/lco/l_RFC_2018_02_11_3.txt.gz</Url>
+      <Properties>
+        <Last-Modified>Mon, 12 Feb 2018 21:35:07 GMT</Last-Modified>
+        <Etag>0x8D572607C678A4F</Etag>
+        <Content-Length>78211897</Content-Length>
+        <Content-Type>application/octet-stream</Content-Type>
+        <Content-Encoding/>
+        <Content-Language/>
+        <Content-MD5>NEnOjQcVYfoI7XJq6q2XRg==</Content-MD5>
+        <Cache-Control/>
+        <BlobType>BlockBlob</BlobType>
+        <LeaseStatus>unlocked</LeaseStatus>
+      </Properties>
+    </Blob>
+    <Blob>
+      <Name>l_RFC_2018_02_11_4.txt.gz</Name>
+      <Url>https://cfdisat.blob.core.windows.net/lco/l_RFC_2018_02_11_4.txt.gz</Url>
+      <Properties>
+        <Last-Modified>Mon, 12 Feb 2018 21:35:07 GMT</Last-Modified>
+        <Etag>0x8D572607C7EBC46</Etag>
+        <Content-Length>80291899</Content-Length>
+        <Content-Type>application/octet-stream</Content-Type>
+        <Content-Encoding/>
+        <Content-Language/>
+        <Content-MD5>BDzMglUWQY0ZnndwnBCHKg==</Content-MD5>
+        <Cache-Control/>
+        <BlobType>BlockBlob</BlobType>
+        <LeaseStatus>unlocked</LeaseStatus>
+      </Properties>
+    </Blob>
+    <Blob>
+      <Name>l_RFC_2018_02_11_5.txt.gz</Name>
+      <Url>https://cfdisat.blob.core.windows.net/lco/l_RFC_2018_02_11_5.txt.gz</Url>
+      <Properties>
+        <Last-Modified>Mon, 12 Feb 2018 21:34:21 GMT</Last-Modified>
+        <Etag>0x8D5726061136D05</Etag>
+        <Content-Length>80029830</Content-Length>
+        <Content-Type>application/octet-stream</Content-Type>
+        <Content-Encoding/>
+        <Content-Language/>
+        <Content-MD5>PRA5wC0U+eoaWmRGVJe/dQ==</Content-MD5>
+        <Cache-Control/>
+        <BlobType>BlockBlob</BlobType>
+        <LeaseStatus>unlocked</LeaseStatus>
+      </Properties>
+    </Blob>
+  </Blobs>
+  <NextMarker/>
+</EnumerationResults>

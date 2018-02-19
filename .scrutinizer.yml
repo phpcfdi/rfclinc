@@ -1,0 +1,19 @@
+filter:
+    excluded_paths:
+        - 'tests/*'
+        - 'vendor/*'
+
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
+tools:
+    external_code_coverage: true
+
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - php-scrutinizer-run

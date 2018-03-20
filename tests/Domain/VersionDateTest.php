@@ -25,7 +25,8 @@ class VersionDateTest extends TestCase
         $this->assertSame(2015, $date->year());
         $this->assertSame(1, $date->month());
         $this->assertSame(13, $date->day());
-        $this->assertSame('2015-01-13', date('Y-m-d', $date->timestamp()));
+        // 1421107200 is 2015-01-13T00:00:00+00:00
+        $this->assertSame(1421107200, $date->timestamp());
         $this->assertSame('2015-01-13', $date->format());
     }
 

@@ -93,7 +93,7 @@ class UpdaterTest extends DatabaseTestCase
 
         $version = $this->updater->version();
         $this->assertSame($this->date, $version->date());
-        $this->assertSame(100, $returned);
+        $this->assertSame(100, $returned, 'Expected 100 lines to be processed, looks like the reader fails');
         $this->assertSame(100, $version->inserted());
         $this->assertSame(0, $version->updated());
         $this->assertSame(0, $version->deleted());

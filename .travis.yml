@@ -24,7 +24,7 @@ before_script:
     fi
 
 script:
-  - bash tests/test-extract-datasample-and-compare.bash
+  - bash -e -x tests/test-extract-datasample-and-compare.bash
   - mkdir -p build/tests/
   - vendor/bin/phplint src/ tests/
   - vendor/bin/phpcs -sp src/ tests/

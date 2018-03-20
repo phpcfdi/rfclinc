@@ -53,7 +53,6 @@ class ListedRfcGateway extends AbstractPdoGateway implements ListedRfcGatewayInt
             . ' where (rfc = :rfc);';
         $this->executePrepared($query, [
             'rfc' => $listedRfc->rfc(),
-            // 'since' => $listedRfc->since()->timestamp(),
             'sncf' => (int) $listedRfc->sncf(),
             'sub' => (int) $listedRfc->sub(),
             'deleted' => (int) $listedRfc->deleted(),

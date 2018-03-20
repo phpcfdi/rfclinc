@@ -16,10 +16,11 @@ class FileReader implements ReaderInterface
 
     public function open(string $source)
     {
-        $this->file = fopen($source, 'r');
-        if (! is_resource($this->file)) {
+        $file = fopen($source, 'r');
+        if (! is_resource($file)) {
             throw new \RuntimeException('Cannot create a reader from the file');
         }
+        $this->file = $file;
     }
 
     public function readLine()

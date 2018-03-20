@@ -61,13 +61,12 @@ class Config
 
     public static function createFromArray(array $values): self
     {
-        $arguments = [
+        return new self(
             'production' === ($values[static::KEY_ENVIRONMENT] ?? ''),
             (string) ($values[static::KEY_DB_DNS] ?? ''),
             (string) ($values[static::KEY_DB_USERNAME] ?? ''),
-            (string) ($values[static::KEY_DB_PASSWORD] ?? ''),
-        ];
-        return new self(...$arguments);
+            (string) ($values[static::KEY_DB_PASSWORD] ?? '')
+        );
     }
 
     public function isEnvironmentProduction(): bool

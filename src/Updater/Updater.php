@@ -156,8 +156,8 @@ class Updater
         $this->logger->notice('Starting general process...');
 
         // obtain or create version
-        $gwVersion = $this->gateways->catalog();
-        if ($gwVersion->exists($this->date)) {
+        $gwCatalogs = $this->gateways->catalog();
+        if ($gwCatalogs->exists($this->date)) {
             throw new \RuntimeException('The version is already in the catalog, it was not expected to exists');
         }
         // start optimizations
@@ -165,7 +165,7 @@ class Updater
 
         // create and store version
         $catalog = new Catalog($this->date, 0, 0, 0, 0);
-        $gwVersion->insert($catalog);
+        $gwCatalogs->insert($catalog);
 
         // create importer
         $this->importer = new Importer($catalog, $this->gateways, $this->progress());

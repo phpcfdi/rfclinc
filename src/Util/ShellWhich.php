@@ -8,16 +8,12 @@ class ShellWhich
 {
     public function __invoke(string $executable): string
     {
-        $output = [];
+        $lines = [];
         $return = -1;
-        exec('which ' . escapeshellarg($executable), $output, $return);
+        $output = (string) exec('which ' . escapeshellarg($executable), $lines, $return);
         if (0 !== (int) $return) {
             return '';
         }
-        $count = count($output);
-        if (0 === $count) {
-            return '';
-        }
-        return $output[$count - 1];
+        return $output;
     }
 }

@@ -24,7 +24,7 @@ class CommandReaderTest extends ReaderTestCase
     {
         $reader = new CommandReader();
 
-        $reader->open('ping 127.0.0.1');
+        $reader->open('while true; do echo bleh; sleep 0.1; done');
         $this->assertTrue($reader->isOpen());
 
         $reads = 2;

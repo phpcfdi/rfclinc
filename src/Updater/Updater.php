@@ -11,9 +11,7 @@ use PhpCfdi\RfcLinc\Domain\Catalog;
 use PhpCfdi\RfcLinc\Domain\VersionDate;
 use PhpCfdi\RfcLinc\Downloader\DownloaderInterface;
 use PhpCfdi\RfcLinc\Downloader\PhpDownloader;
-use PhpCfdi\RfcLinc\Util\CommandReader;
 use PhpCfdi\RfcLinc\Util\ReaderInterface;
-use PhpCfdi\RfcLinc\Util\ShellWhich;
 use PhpCfdi\RfcLinc\Util\TemporaryFilename;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -43,9 +41,6 @@ class Updater
     /** @var ProgressInterface */
     private $progress;
 
-    /** @var string[] */
-    private $commands;
-
     public function __construct(VersionDate $date, FactoryInterface $gateways)
     {
         $this->date = $date;
@@ -54,28 +49,6 @@ class Updater
         $this->indexInterpreter = new IndexInterpreter();
         $this->logger = new NullLogger();
         $this->progress = new NullProgress();
-        $this->commands = $this->commandPaths();
-        $this->checkCommands();
-    }
-
-    public function commandPaths(): array
-    {
-        $which = new ShellWhich();
-        $commands = [
-            'gunzip' => $which('gunzip'),
-            'openssl' => $which('openssl'),
-            'iconv' => $which('iconv'),
-        ];
-        return $commands;
-    }
-
-    public function checkCommands()
-    {
-        foreach ($this->commands as $command => $path) {
-            if ('' === $path) {
-                throw new \InvalidArgumentException("Cannot find $command, it is required to update");
-            }
-        }
     }
 
     public function hasImporter(): bool
@@ -287,13 +260,8 @@ class Updater
 
     public function createReaderForPackedFile(string $filename): ReaderInterface
     {
-        $reader = new CommandReader();
-        $command = implode(' | ', [
-            $this->commands['gunzip'] . ' --stdout ' . escapeshellarg($filename),
-            $this->commands['openssl'] . ' smime -verify -in - -inform der -noverify 2> /dev/null',
-            $this->commands['iconv'] . ' --from iso8859-1 --to utf-8',
-        ]);
-        $reader->open($command);
+        $reader = new PackedBlobReader();
+        $reader->open($filename);
         return $reader;
     }
 

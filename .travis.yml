@@ -10,12 +10,6 @@ php:
 # See: http://docs.travis-ci.com/user/workers/container-based-infrastructure/
 sudo: false
 
-# Install dependencies: https://docs.travis-ci.com/user/installing-dependencies/
-addons:
-  apt:
-    packages:
-      - openssl
-
 before_script:
   - travis_retry composer install --no-interaction --prefer-dist
   - |
@@ -24,7 +18,7 @@ before_script:
     fi
 
 script:
-  - bash -e -x tests/test-extract-datasample-and-compare.bash
+  - bash -e tests/test-extract-datasample-and-compare.bash
   - mkdir -p build/tests/
   - vendor/bin/phplint src/ tests/
   - vendor/bin/phpcs -sp src/ tests/

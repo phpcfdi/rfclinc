@@ -23,7 +23,7 @@ if [ 0 -ne $? ]; then
     exit 1
 fi
 
-cat "$UNCOMPRESSED" | "$OPENSSL" smime -verify -in - -inform der -noverify > "$UNPACKED"
+cat "$UNCOMPRESSED" | "$OPENSSL" smime -verify -inform der -noverify > "$UNPACKED"
 if [ 0 -ne $? ]; then
     echo "Error while openssl smime" 1>&2
     exit 1
@@ -51,7 +51,7 @@ fi
 
 OUTFILE="$(mktemp --dry-run)"
 "$GUNZIP" --stdout "$INFILE" \
-    | "$OPENSSL" smime -verify -in - -inform der -noverify 2> /dev/null \
+    | "$OPENSSL" smime -verify -inform der -noverify 2> /dev/null \
     | "$ICONV" --from iso8859-1 --to utf-8 \
     | "$SED" 's/\r$//' \
     > "$OUTFILE"

@@ -43,7 +43,7 @@ class PackedBlobReader implements ReaderInterface
     {
         $command = implode(' | ', [
             $this->commands['gunzip'] . ' --stdout ' . escapeshellarg($filename),
-            $this->commands['openssl'] . ' smime -verify -in - -inform der -noverify 2> /dev/null',
+            $this->commands['openssl'] . ' smime -verify -inform der -noverify 2> /dev/null',
             $this->commands['iconv'] . ' --from iso8859-1 --to utf-8',
             $this->commands['sed'] . ' ' . escapeshellarg('s/\r$//'),
         ]);

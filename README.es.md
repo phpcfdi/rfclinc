@@ -1,4 +1,4 @@
-# eclipxe/php-rfc-linc
+# phpcfdi/rfclinc
 
 > RFC inscritos no cancelados [README.md](README.md)
 

@@ -1,5 +1,5 @@
 {
-    "name": "eclipxe/php-rfc-linc",
+    "name": "phpcfdi/rfclinc",
     "description": "Listado de RFC Inscritos No Cancelados (php library and application)",
     "keywords": ["sat", "mexico", "lrfc"],
     "homepage": "https://github.com/phpcfdi/rfclinc",
@@ -30,7 +30,8 @@
         "overtrue/phplint": "^1.0",
         "squizlabs/php_codesniffer": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.4",
-        "phpstan/phpstan-shim": "^0.9.1"
+        "phpstan/phpstan-shim": "^0.9.1",
+        "maglnet/composer-require-checker": "^0.1.6"
     },
     "autoload": {
         "psr-4": {

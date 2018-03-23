@@ -28,9 +28,9 @@ interface CatalogGatewayInterface
      */
     public function previousBefore(VersionDate $date);
 
-    public function insert(Catalog $version);
+    public function insert(Catalog $catalog);
 
-    public function update(Catalog $version);
+    public function update(Catalog $catalog);
 
-    public function delete(VersionDate $version);
+    public function delete(VersionDate $date);
 }

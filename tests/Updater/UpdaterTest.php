@@ -90,13 +90,13 @@ class UpdaterTest extends DatabaseTestCase
         $blob = new Blob('name', $source, 'Ziyi4Yp5ffzWu5hi/ivpUw==');
         $returned = $this->updater->runBlobs($blob);
 
-        $version = $this->updater->version();
-        $this->assertSame($this->date, $version->date());
+        $catalog = $this->updater->catalog();
+        $this->assertSame($this->date, $catalog->date());
         $this->assertSame(100, $returned, 'Expected 100 lines to be processed, looks like the reader fails');
-        $this->assertSame(100, $version->inserted());
-        $this->assertSame(0, $version->updated());
-        $this->assertSame(0, $version->deleted());
-        $this->assertSame(100, $version->records());
+        $this->assertSame(100, $catalog->inserted());
+        $this->assertSame(0, $catalog->updated());
+        $this->assertSame(0, $catalog->deleted());
+        $this->assertSame(100, $catalog->records());
     }
 
     public function testRun()

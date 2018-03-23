@@ -56,7 +56,7 @@ class RunTwoLoadsTest extends DatabaseTestCase
         $firstUpdater->processEnd();
         $reader->close();
 
-        $firstVersion = $firstUpdater->version();
+        $firstVersion = $firstUpdater->catalog();
 
         $this->assertSame([100, 100, 0, 0], [
             $firstVersion->records(),
@@ -72,7 +72,7 @@ class RunTwoLoadsTest extends DatabaseTestCase
         $secondUpdater->processEnd();
         $reader->close();
 
-        $secondVersion = $secondUpdater->version();
+        $secondVersion = $secondUpdater->catalog();
         $this->assertSame([100, 1, 3, 1], [
             $secondVersion->records(),
             $secondVersion->inserted(),

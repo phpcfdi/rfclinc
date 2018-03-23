@@ -21,7 +21,7 @@ class ImporterTest extends DatabaseTestCase
     private $gateways;
 
     /** @var Catalog */
-    private $version;
+    private $catalog;
 
     /** @var ProgressObserver */
     private $observer;
@@ -32,23 +32,23 @@ class ImporterTest extends DatabaseTestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->version = new Catalog(new VersionDate(2018, 2, 11), 0, 0, 0, 0);
+        $this->catalog = new Catalog(new VersionDate(2018, 2, 11), 0, 0, 0, 0);
         $this->gateways = new PdoFactory($this->pdo());
         $this->observer = new ProgressObserver();
-        $this->importer = new Importer($this->version, $this->gateways, new Progress(null, [$this->observer]));
+        $this->importer = new Importer($this->catalog, $this->gateways, new Progress(null, [$this->observer]));
     }
 
     public function testConstructed()
     {
-        $this->assertSame($this->version, $this->importer->catalog());
+        $this->assertSame($this->catalog, $this->importer->catalog());
     }
 
     public function testIncrements()
     {
         $expected = [
-            $this->version->inserted() + 1,
-            $this->version->updated() + 2,
-            $this->version->deleted() + 3,
+            $this->catalog->inserted() + 1,
+            $this->catalog->updated() + 2,
+            $this->catalog->deleted() + 3,
         ];
 
         $this->importer->incrementInserted();
@@ -59,9 +59,9 @@ class ImporterTest extends DatabaseTestCase
         $this->importer->incrementDeleted();
 
         $actual = [
-            $this->version->inserted(),
-            $this->version->updated(),
-            $this->version->deleted(),
+            $this->catalog->inserted(),
+            $this->catalog->updated(),
+            $this->catalog->deleted(),
         ];
         $this->assertEquals($expected, $actual);
     }
@@ -99,7 +99,7 @@ class ImporterTest extends DatabaseTestCase
         $this->assertFalse($inserted->sub());
         $this->assertArraySubset([
             0 => [
-                'version' => $this->version->date()->format(),
+                'version' => $this->catalog->date()->format(),
                 'action' => RfcLog::ACTION_CREATED,
             ],
         ], $this->retrieveLogs($rfc));
@@ -133,9 +133,9 @@ class ImporterTest extends DatabaseTestCase
         ], $this->retrieveLogs($rfc));
 
         // check numbers
-        $this->assertSame(1, $this->version->inserted());
-        $this->assertSame(3, $this->version->updated());
-        $this->assertSame(0, $this->version->deleted());
+        $this->assertSame(1, $this->catalog->inserted());
+        $this->assertSame(3, $this->catalog->updated());
+        $this->assertSame(0, $this->catalog->deleted());
     }
 
     public function testPerformDelete()
@@ -150,7 +150,7 @@ class ImporterTest extends DatabaseTestCase
         $this->assertArraySubset([
             0 => ['action' => RfcLog::ACTION_REMOVED],
         ], $this->retrieveLogs($rfc));
-        $this->assertSame(1, $this->version->deleted());
+        $this->assertSame(1, $this->catalog->deleted());
     }
 
     public function testImportReaderWithObserver()
@@ -167,9 +167,9 @@ class ImporterTest extends DatabaseTestCase
         $this->importer->importReader($reader);
         $reader->close();
 
-        $this->assertSame(100, $this->version->inserted());
-        $this->assertSame(0, $this->version->updated());
-        $this->assertSame(0, $this->version->deleted());
+        $this->assertSame(100, $this->catalog->inserted());
+        $this->assertSame(0, $this->catalog->updated());
+        $this->assertSame(0, $this->catalog->deleted());
 
         $this->assertSame(100, $this->observer->lastStatus->getValue());
     }

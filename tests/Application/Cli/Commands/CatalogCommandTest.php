@@ -21,7 +21,7 @@ class CatalogCommandTest extends CliApplicationTestCase
      */
     public function testWithMockedRun(string $input)
     {
-        $version = new Catalog(new VersionDate(2018, 1, 13), 11, 12, 13, 14);
+        $catalog = new Catalog(new VersionDate(2018, 1, 13), 11, 12, 13, 14);
 
         // create the application
         $application = $this->createApplication();
@@ -32,8 +32,8 @@ class CatalogCommandTest extends CliApplicationTestCase
             ->setConstructorArgs([$application->container()])
             ->setMethods(['getLatestCatalog', 'getCatalogByDateString'])
             ->getMock();
-        $command->method('getLatestCatalog')->willReturn($version);
-        $command->method('getCatalogByDateString')->willReturn($version);
+        $command->method('getLatestCatalog')->willReturn($catalog);
+        $command->method('getCatalogByDateString')->willReturn($catalog);
 
         // alter the application with the mock command
         $application->add($command);
@@ -44,11 +44,11 @@ class CatalogCommandTest extends CliApplicationTestCase
 
         $display = $commandTester->getDisplay();
         $this->assertContains($input, $display);
-        $this->assertContains('Catalog: ' . $version->date()->format(), $display);
-        $this->assertContains('Active: ' . $version->records(), $display);
-        $this->assertContains('Inserted: ' . $version->inserted(), $display);
-        $this->assertContains('Updated: ' . $version->updated(), $display);
-        $this->assertContains('Deleted: ' . $version->deleted(), $display);
+        $this->assertContains('Catalog: ' . $catalog->date()->format(), $display);
+        $this->assertContains('Active: ' . $catalog->records(), $display);
+        $this->assertContains('Inserted: ' . $catalog->inserted(), $display);
+        $this->assertContains('Updated: ' . $catalog->updated(), $display);
+        $this->assertContains('Deleted: ' . $catalog->deleted(), $display);
         $this->assertSame(0, $commandTester->getStatusCode());
     }
 }

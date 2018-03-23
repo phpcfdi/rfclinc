@@ -23,9 +23,9 @@ class Importer
     /** @var ProgressInterface */
     private $progress;
 
-    public function __construct(Catalog $version, FactoryInterface $gateways, ProgressInterface $progress = null)
+    public function __construct(Catalog $catalog, FactoryInterface $gateways, ProgressInterface $progress = null)
     {
-        $this->catalog = $version;
+        $this->catalog = $catalog;
         $this->gateways = $gateways;
         $this->progress = $progress ?: new NullProgress();
     }

@@ -44,49 +44,49 @@ class CatalogGatewayTest extends DatabaseTestCase
     public function testInsert()
     {
         $date = VersionDate::createFromString('2015-01-13');
-        $version = new Catalog($date, 1000, 10, 20, 30);
+        $catalog = new Catalog($date, 1000, 10, 20, 30);
 
-        $this->gateway->insert($version);
+        $this->gateway->insert($catalog);
 
         $retrieved = $this->gateway->get($date);
-        $this->assertEquals($version, $retrieved);
+        $this->assertEquals($catalog, $retrieved);
     }
 
     public function testDoubleInsertFail()
     {
         $date = VersionDate::createFromString('2015-01-20');
-        $version = new Catalog($date, 1000, 10, 20, 30);
-        $this->gateway->insert($version);
+        $catalog = new Catalog($date, 1000, 10, 20, 30);
+        $this->gateway->insert($catalog);
 
         $this->expectException(\RuntimeException::class);
-        $this->gateway->insert($version);
+        $this->gateway->insert($catalog);
     }
 
     public function testUpdate()
     {
         $date = VersionDate::createFromString('2015-01-15');
-        $version = new Catalog($date, 1000, 10, 20, 30);
-        $this->gateway->insert($version);
+        $catalog = new Catalog($date, 1000, 10, 20, 30);
+        $this->gateway->insert($catalog);
 
-        $version->setRecords(9999);
-        $version->setInserted(11);
-        $version->setUpdated(22);
-        $version->setDeleted(33);
+        $catalog->setRecords(9999);
+        $catalog->setInserted(11);
+        $catalog->setUpdated(22);
+        $catalog->setDeleted(33);
 
-        $this->gateway->update($version);
+        $this->gateway->update($catalog);
 
-        $this->assertEquals($version, $this->gateway->get($date));
+        $this->assertEquals($catalog, $this->gateway->get($date));
     }
 
     public function testDelete()
     {
         $date = VersionDate::createFromString('2015-01-20');
-        $version = new Catalog($date, 1000, 10, 20, 30);
+        $catalog = new Catalog($date, 1000, 10, 20, 30);
         // remove if previous
         $this->gateway->delete($date);
 
         // insert and check it must not exist
-        $this->gateway->insert($version);
+        $this->gateway->insert($catalog);
         $this->assertTrue($this->gateway->exists($date));
 
         // remove and check it must not exist

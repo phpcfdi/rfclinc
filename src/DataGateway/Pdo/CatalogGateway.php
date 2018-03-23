@@ -84,29 +84,29 @@ class CatalogGateway extends AbstractPdoGateway implements CatalogGatewayInterfa
         return $this->createVersionFromArray(VersionDate::createFromTimestamp((int) $values['version']), $values);
     }
 
-    public function insert(Catalog $version)
+    public function insert(Catalog $catalog)
     {
         $query = 'insert into catalogs (version, records, inserted, updated, deleted)'
             . ' values (:version, :records, :inserted, :updated, :deleted);';
         $this->executePrepared($query, [
-            'version' => $version->date()->timestamp(),
-            'records' => $version->records(),
-            'inserted' => $version->inserted(),
-            'updated' => $version->updated(),
-            'deleted' => $version->deleted(),
+            'version' => $catalog->date()->timestamp(),
+            'records' => $catalog->records(),
+            'inserted' => $catalog->inserted(),
+            'updated' => $catalog->updated(),
+            'deleted' => $catalog->deleted(),
         ], 'Cannot insert into catalogs');
     }
 
-    public function update(Catalog $version)
+    public function update(Catalog $catalog)
     {
         $query = 'update catalogs set records = :records, inserted = :inserted, updated = :updated, deleted = :deleted'
             . ' where (version = :version);';
         $this->executePrepared($query, [
-            'version' => $version->date()->timestamp(),
-            'records' => $version->records(),
-            'inserted' => $version->inserted(),
-            'updated' => $version->updated(),
-            'deleted' => $version->deleted(),
+            'version' => $catalog->date()->timestamp(),
+            'records' => $catalog->records(),
+            'inserted' => $catalog->inserted(),
+            'updated' => $catalog->updated(),
+            'deleted' => $catalog->deleted(),
         ], 'Cannot update into catalogs');
     }
 

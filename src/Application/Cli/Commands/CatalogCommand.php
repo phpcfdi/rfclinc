@@ -51,10 +51,10 @@ class CatalogCommand extends Command
         throw new \RuntimeException('There are no latest catalog in the database');
     }
 
-    protected function getCatalogByDateString(string $versionDate): Catalog
+    protected function getCatalogByDateString(string $dateString): Catalog
     {
         return $this->gateways()->catalog()->get(
-            VersionDate::createFromString($versionDate)
+            VersionDate::createFromString($dateString)
         );
     }
 

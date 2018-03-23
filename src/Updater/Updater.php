@@ -64,7 +64,7 @@ class Updater
         throw new \LogicException('There is no importer, did you call run() method?');
     }
 
-    public function version(): Catalog
+    public function catalog(): Catalog
     {
         return $this->importer()->catalog();
     }

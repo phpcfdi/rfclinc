@@ -9,7 +9,6 @@ use PhpCfdi\RfcLinc\DataGateway\FactoryInterface;
 use PhpCfdi\RfcLinc\DataGateway\Pdo\PdoFactory;
 use PhpCfdi\RfcLinc\Domain\VersionDate;
 use PhpCfdi\RfcLinc\Downloader\DownloaderInterface;
-use PhpCfdi\RfcLinc\Downloader\PhpDownloader;
 use PhpCfdi\RfcLinc\Tests\DatabaseTestCase;
 use PhpCfdi\RfcLinc\Updater\Blob;
 use PhpCfdi\RfcLinc\Updater\IndexInterpreter;
@@ -107,18 +106,23 @@ class UpdaterTest extends DatabaseTestCase
         /** @var \PHPUnit\Framework\MockObject\MockObject|Updater $updater */
         $updater = $this->getMockBuilder(Updater::class)
             ->setConstructorArgs([$this->date, $this->gateways])
-            ->setMethodsExcept(['run', 'setDownloader', 'importer'])
+            ->setMethodsExcept(['run', 'setDownloader'])
             ->getMock();
-        $updater->method('indexUrl')->willReturn($expectedIndexFile);
-        $updater->expects($spy = $this->any())->method('runBlobs');
+        $updater->expects($runBlobsSpy = $this->once())->method('runBlobs');
+
         // change downloader to ensure that it will only read/copy
-        $updater->setDownloader(new PhpDownloader()); // make sure to use a simple downloader
+        /** @var \PHPUnit\Framework\MockObject\MockObject|DownloaderInterface $downloader */
+        $downloader = $this->getMockBuilder(DownloaderInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $downloader->method('download')->willReturn(file_get_contents($expectedIndexFile));
+        $updater->setDownloader($downloader); // make sure to use a simple downloader
 
         // action!
         $updater->run();
 
         // asserts
-        $invocations = $spy->getInvocations();
+        $invocations = $runBlobsSpy->getInvocations();
         $this->assertCount(1, $invocations);
         $invocation = $invocations[0];
         $this->assertCount(5, $invocation->getParameters());

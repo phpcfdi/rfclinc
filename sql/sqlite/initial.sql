@@ -1,4 +1,4 @@
-drop table if exists versions;
+drop table if exists catalogs;
 create table catalogs (
   version int primary key not null,
   records int not null default 0,

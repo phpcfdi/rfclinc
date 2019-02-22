@@ -32,7 +32,7 @@ Por cada blob
 1. Descargar el blob
 2. Verificar la descarga con su digestión md5
 3. Descomprimir el listado
-4. Desempaquetar (smime) el listadp
+4. Desempaquetar (smime) el listado
 5. Procesar cada línea
 
 Los pasos de descomprimir, desempaquetar y procesar se realizan en una sola pasada usando unix pipes.

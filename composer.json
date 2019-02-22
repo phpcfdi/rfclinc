@@ -15,6 +15,7 @@
         "php": ">=7.0",
         "ext-libxml": "*",
         "ext-simplexml": "*",
+        "ext-pdo": "*",
         "silex/silex": "~2.2",
         "symfony/console": "~3.4",
         "psr/log": "^1.0",
@@ -23,7 +24,6 @@
         "symfony/http-foundation": "^3.4"
     },
     "require-dev": {
-        "ext-pdo": "*",
         "ext-sqlite3": "*",
         "symfony/browser-kit": "^3.4",
         "phpunit/phpunit": "^6.2",

@@ -14,7 +14,7 @@ class CliApplicationTestCase extends TestCase
     {
         $application = Application::createApplication();
         $application->container()['config'] = Config::createFromArray([
-            Config::KEY_DB_DNS => 'sqlite::memory:',
+            Config::KEY_DB_DSN => 'sqlite::memory:',
         ]);
         $application->setAutoExit(false);
         return $application;

@@ -10,7 +10,7 @@ class Config
 
     const VALUE_PRODUCTION = 'production';
 
-    const KEY_DB_DNS = 'db.dns';
+    const KEY_DB_DSN = 'db.dsn';
 
     const KEY_DB_USERNAME = 'db.username';
 
@@ -20,7 +20,7 @@ class Config
     private $environmentProduction;
 
     /** @var string */
-    private $dbDns;
+    private $dbDsn;
 
     /** @var string */
     private $dbUsername;
@@ -28,10 +28,10 @@ class Config
     /** @var string */
     private $dbPassword;
 
-    public function __construct(bool $environmentProduction, string $dbDns, string $dbUsername, string $dbPassword)
+    public function __construct(bool $environmentProduction, string $dbDsn, string $dbUsername, string $dbPassword)
     {
         $this->environmentProduction = $environmentProduction;
-        $this->dbDns = $dbDns;
+        $this->dbDsn = $dbDsn;
         $this->dbUsername = $dbUsername;
         $this->dbPassword = $dbPassword;
     }
@@ -63,7 +63,7 @@ class Config
     {
         return new self(
             'production' === ($values[static::KEY_ENVIRONMENT] ?? ''),
-            (string) ($values[static::KEY_DB_DNS] ?? ''),
+            (string) ($values[static::KEY_DB_DSN] ?? ''),
             (string) ($values[static::KEY_DB_USERNAME] ?? ''),
             (string) ($values[static::KEY_DB_PASSWORD] ?? '')
         );
@@ -74,9 +74,9 @@ class Config
         return $this->environmentProduction;
     }
 
-    public function dbDns(): string
+    public function dbDsn(): string
     {
-        return $this->dbDns;
+        return $this->dbDsn;
     }
 
     public function dbUsername(): string

@@ -22,16 +22,16 @@ class DataGatewayServiceProvider implements ServiceProviderInterface
 
     public function createPdo(Config $config): PDO
     {
-        if ('' === $config->dbDns()) {
-            throw new \RuntimeException('No database DNS is configured');
+        if ('' === $config->dbDsn()) {
+            throw new \RuntimeException('No database DSN is configured');
         }
 
         try {
-            return new PDO($config->dbDns(), $config->dbUsername(), $config->dbPassword());
+            return new PDO($config->dbDsn(), $config->dbUsername(), $config->dbPassword());
         } catch (\Throwable $exception) {
             throw new \RuntimeException(sprintf(
-                "Unable to create PDO using\nDNS: %s,\nUsername: '%s',\nPassword: %s.",
-                $config->dbDns(),
+                "Unable to create PDO using\nDSN: %s,\nUsername: '%s',\nPassword: %s.",
+                $config->dbDsn(),
                 $config->dbUsername(),
                 ('' === $config->dbPassword()) ? 'empty' : 'not empty'
             ), 0, $exception);

@@ -8,7 +8,7 @@ declare(strict_types=1);
  */
 return [
     'environment' => 'development',
-    'db.dns' => 'sqlite:' . realpath(__DIR__ . '/../tests/assets/database.sqlite3'),
+    'db.dsn' => 'sqlite:' . realpath(__DIR__ . '/../tests/assets/database.sqlite3'),
     'db.username' => '',
     'db.password' => '',
 ];

@@ -12,28 +12,28 @@ use Pimple\Container;
 
 class DataGatewayServiceProviderTest extends TestCase
 {
-    public function testCreatePdoWithNoDns()
+    public function testCreatePdoWithNoDsn()
     {
         $service = new DataGatewayServiceProvider();
         $config = Config::createFromArray([]);
 
-        $this->expectExceptionMessage('No database DNS is configured');
+        $this->expectExceptionMessage('No database DSN is configured');
         $service->createPdo($config);
     }
 
-    public function testCreatePdoWithInvalidDns()
+    public function testCreatePdoWithInvalidDsn()
     {
         $service = new DataGatewayServiceProvider();
-        $config = Config::createFromArray([Config::KEY_DB_DNS => 'foo']);
+        $config = Config::createFromArray([Config::KEY_DB_DSN => 'foo']);
 
         $this->expectExceptionMessage('Unable to create PDO');
         $service->createPdo($config);
     }
 
-    public function testCreatePdoWithValidDns()
+    public function testCreatePdoWithValidDsn()
     {
         $service = new DataGatewayServiceProvider();
-        $config = Config::createFromArray([Config::KEY_DB_DNS => 'sqlite::memory:']);
+        $config = Config::createFromArray([Config::KEY_DB_DSN => 'sqlite::memory:']);
 
         $this->assertNotNull($service->createPdo($config));
     }
@@ -41,7 +41,7 @@ class DataGatewayServiceProviderTest extends TestCase
     public function testRegister()
     {
         $container = new Container();
-        $config = Config::createFromArray([Config::KEY_DB_DNS => 'sqlite::memory:']);
+        $config = Config::createFromArray([Config::KEY_DB_DSN => 'sqlite::memory:']);
         $container['config'] = $config;
         $service = new DataGatewayServiceProvider();
 

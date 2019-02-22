@@ -7,7 +7,7 @@ This library works with a database, you will need to create the database and set
 ```
 # command
 sqlite3 /home/user/phplinc.db < sql/sqlite/initial.sql
-# dns
+# dsn see http://php.net/manual/es/ref.pdo-sqlite.connection.php
 sqlite:///home/user/phplinc.db
 ``` 
 
@@ -17,8 +17,8 @@ sqlite:///home/user/phplinc.db
 ```
 # command
 psql -d phplinc < sql/postgres/initial.sql
-# dns
-pgsql:dbname=phplinc
+# dsn see http://php.net/manual/es/ref.pdo-pgsql.connection.php
+pgsql:host=localhost;dbname=phplinc
 ``` 
 
 
@@ -26,7 +26,7 @@ pgsql:dbname=phplinc
 
 ```
 # command
-mysql phplinc < sql/postgres/initial.sql
-# dns
-mysql:dbname=phplinc
+mysql phplinc < sql/mysql/initial.sql
+# dsn see http://php.net/manual/es/ref.pdo-mysql.connection.php
+mysql:host=localhost;dbname=phplinc
 ``` 

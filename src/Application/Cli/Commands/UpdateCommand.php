@@ -101,7 +101,7 @@ class UpdateCommand extends Command
 
         // show debug messages of database config
         $config = $this->config();
-        $logger->debug(sprintf('DB: [%s], Username: [%s]', $config->dbDns(), $config->dbUsername()));
+        $logger->debug(sprintf('DB: [%s], Username: [%s]', $config->dbDsn(), $config->dbUsername()));
 
         // verify previous version
         $latestDate = $this->getLatestVersionDate();

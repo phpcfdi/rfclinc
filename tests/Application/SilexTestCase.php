@@ -19,7 +19,7 @@ class SilexTestCase extends WebTestCase
         }
         $application = Application::createApplication();
         $application['config'] = Config::createFromArray([
-            Config::KEY_DB_DNS => 'sqlite://' . $database,
+            Config::KEY_DB_DSN => 'sqlite://' . $database,
         ]);
         unset($application['exception_handler']);
         // set session.test to true to simulate sessions

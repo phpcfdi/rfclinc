@@ -24,6 +24,7 @@
         "symfony/http-foundation": "^3.4"
     },
     "require-dev": {
+        "ext-json": "*",
         "ext-sqlite3": "*",
         "symfony/browser-kit": "^3.4",
         "phpunit/phpunit": "^6.2",

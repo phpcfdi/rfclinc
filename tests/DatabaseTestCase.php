@@ -23,8 +23,8 @@ class DatabaseTestCase extends TestCase
     protected function createPdo(): PDO
     {
         $pdo = new PDO('sqlite::memory:');
-        // uncomment to check the pdo exceptions instead of library exceptions
-        // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // comment to check the pdo exceptions instead of library exceptions
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
 

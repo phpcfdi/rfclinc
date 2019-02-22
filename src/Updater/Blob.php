@@ -31,12 +31,14 @@ class Blob
 
     public static function convertMd5BlobToMd5Standard(string $stringBase64): string
     {
-        // base64 -> decoded string -> array bytes -> array hex -> string
+        // base64 -> decoded string -> split to bytes -> map to hex -> implode all hex
         return implode(
             array_map(
-                'bin2hex',
+                function (string $input): string {
+                    return bin2hex($input);
+                },
                 str_split(
-                    (string) base64_decode($stringBase64) // base64 can return FALSE
+                    base64_decode($stringBase64) ? : '' // base64 can return FALSE
                 ) ? : [] // str_split can return FALSE
             )
         );

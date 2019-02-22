@@ -139,7 +139,7 @@ class UpdateCommand extends Command
 
         // separate into a different method to allow mock & test
         $blobFiles = $input->getArgument('blobs');
-        if (count($blobFiles)) {
+        if (is_array($blobFiles) && count($blobFiles)) {
             $blobs = [];
             foreach ($blobFiles as $index => $blobSourceFile) {
                 $blobFile = (string) realpath($blobSourceFile);

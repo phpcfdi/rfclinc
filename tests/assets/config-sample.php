@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 /**
  * The config array keys are in the config class
- * @see \RfcLinc\Application\Config
+ * @see \PhpCfdi\RfcLinc\Application\Config
  */
 return [
     'environment' => 'development',
